@@ -1,0 +1,15 @@
+services:
+  nginx:
+    build:
+      context: .
+    ports:
+      - "${PORT}:80"
+    networks:
+      network:
+        ipv4_address: 10.11.11.4
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.11.0.0/16

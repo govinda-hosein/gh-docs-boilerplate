@@ -1,0 +1,175 @@
+{
+  "swagger": "2.0",
+  "basePath": "/",
+  "paths": {
+    "/activation_service/activate-plan": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "operationId": "post_plan_activation_resource",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Plan Activation POST model"
+            }
+          },
+          {
+            "name": "X-API-KEY",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "tags": ["Plan Activation API"]
+      }
+    },
+    "/activation_service/activate-plan-discounted": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "operationId": "post_plan_activation_discounted_resource",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Plan Activation Discounted POST model"
+            }
+          },
+          {
+            "name": "X-API-KEY",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "tags": ["Plan Activation API"]
+      }
+    },
+    "/activation_service/check-balance": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "operationId": "post_check_balance_resource",
+        "parameters": [
+          {
+            "name": "payload",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Check Balance POST model"
+            }
+          },
+          {
+            "name": "X-API-KEY",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "tags": ["Plan Activation API"]
+      }
+    },
+    "/activation_service/confirm-code": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "operationId": "get_confirm_code_resource",
+        "parameters": [
+          {
+            "name": "X-API-KEY",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "tags": ["Plan Activation API"]
+      }
+    }
+  },
+  "info": {
+    "title": "API",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "consumes": ["application/json"],
+  "tags": [
+    {
+      "name": "Plan Activation API",
+      "description": "The endpoints to handle operations for plan activations via ESIF."
+    }
+  ],
+  "definitions": {
+    "Plan Activation POST model": {
+      "required": ["msisdn", "plan_id", "source"],
+      "properties": {
+        "msisdn": {
+          "type": "string"
+        },
+        "plan_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Plan Activation Discounted POST model": {
+      "required": ["discount_price", "msisdn", "plan_id", "price", "source"],
+      "properties": {
+        "msisdn": {
+          "type": "string"
+        },
+        "plan_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "discount_price": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Check Balance POST model": {
+      "required": ["msisdn", "plan_price", "source"],
+      "properties": {
+        "msisdn": {
+          "type": "string"
+        },
+        "plan_price": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "responses": {
+    "ParseError": {
+      "description": "When a mask can't be parsed"
+    },
+    "MaskError": {
+      "description": "When any error occurs on mask"
+    }
+  }
+}
